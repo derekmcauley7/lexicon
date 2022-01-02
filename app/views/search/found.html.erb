@@ -1,4 +1,17 @@
-<h1>Search#found</h1>
-<p>
-<%= @word.word %>
+
+<div class="card center-card" >
+  <div class="card-body center-card">
+    <h5 class="card-title"><b>Word : </b> <%= @word.word %></h5>
+    <p class="card-text"><b>Definition : </b> <%= @word.definition %></p>
+    <p class="card-text"><b>Part Of Speech : </b> <%= @word.partOfSpeech %></p>
+    <p class="card-text"><b>Example : </b> <%= @word.example %></p>
+    <p class="card-text"><b>Origin : </b> <%= @word.origin %></p>
+<br/>
+    <div class="col-sm-4 col-sm-offset-4 embed-responsive embed-responsive-4by3">
+    <audio controls>
+      <source src="<%= @word.audio %>" type="audio/mpeg">
+    </audio>
+    </div>
+  </div>
+</div>
 </p>

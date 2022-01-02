@@ -7,20 +7,28 @@ class SearchController < ApplicationController
   end
 
   def found
-    @word = Word.where(:word => params[:word]).first
+    puts " Search term " + params[:search_term]
+    @word = Word.where(:word => params[:search_term]).first
     if @word.nil?
-      puts params[:word]
-      json_response = request_word_from_api(params[:word])
-      puts json_response
-      if json_response.any?{|hash| hash['title'] == "No Definitions Found"}
-        redirect_to("search/notFound")
+      response = request_word_from_api(params[:search_term])
+      if response[0]["title"] == "No Definitions Found" || response[0]["word"].nil?
+        redirect_to("/search/notFound")
       else
         @word = Word.new
-        puts "Word test " +  json_response[1]["word"]
-        @word.word = json_response[1]["word"]
+        @word.word = response[0]["word"]
+        @word.count = 1
+        @word.audio = response[0]["phonetics"][0]["audio"]
+        @word.origin = response[0]["origin"]
+        @word.partOfSpeech = response[0]["meanings"][0]["partOfSpeech"]
+        @word.definition = response[0]["meanings"][0]["definitions"][0]["definition"]
+        @word.example = response[0]["meanings"][0]["definitions"][0]["example"]
         @word.save
       end
+    else
+      @word.count+=1
+      @word.save
     end
+
   end
 
   def notFound
@@ -30,7 +38,6 @@ class SearchController < ApplicationController
 
   def request_word_from_api(word)
     uri = URI("https://api.dictionaryapi.dev/api/v2/entries/en/" + word.to_s)
-    puts uri
     Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
       request = Net::HTTP::Get.new(uri, 'Content-Type' => 'application/json')
       request.body = {parameter: 'value'}.to_json

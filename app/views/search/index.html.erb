@@ -3,9 +3,10 @@
   <div class="row search_height d-flex justify-content-center align-items-center">
     <div class="col-md-8">
       <div class="search"> <i class="fa fa-search"></i>
-        <input type="text" class="form-control" placeholder="Enter a word">
-        <button class="btn btn-primary">Search</button> </div>
-      <li><%= link_to_unless_current("test", found_word_path("test")) %></li>
+        <%= form_tag(found_word_path, :method => :get) do %>
+        <input type="text" class="form-control" name="search_term" placeholder="Enter a word">
+          <button class="btn btn-primary" type="submit" >Search</button> </div>
+        <% end %>
     </div>
   </div>
 </div>

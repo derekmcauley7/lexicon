@@ -1,0 +1,11 @@
+<h1 class="heading-center">Lexicon</h1>
+<div class="container">
+  <div class="row search_height d-flex justify-content-center align-items-center">
+    <div class="col-md-8">
+      <div class="search"> <i class="fa fa-search"></i>
+        <input type="text" class="form-control" placeholder="Enter a word">
+        <button class="btn btn-primary">Search</button> </div>
+      <li><%= link_to_unless_current("test", found_word_path("test")) %></li>
+    </div>
+  </div>
+</div>

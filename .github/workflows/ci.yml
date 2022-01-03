@@ -19,5 +19,7 @@ jobs:
         run: bundle install
       - name: Run DB
         run : rake db:migrate RAILS_ENV=test
+      - name: Add Bootstrap
+        run : yarn add bootstrap jquery popper.js
       - name: Run tests
         run: bundle exec rake

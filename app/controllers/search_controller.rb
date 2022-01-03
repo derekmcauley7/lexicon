@@ -7,11 +7,11 @@ class SearchController < ApplicationController
   end
 
   def found
-    puts " Search term " + params[:search_term]
+    puts params[:search_term]
     @word = Word.where(:word => params[:search_term]).first
     if @word.nil?
       response = request_word_from_api(params[:search_term])
-      if response[0]["title"] == "No Definitions Found" || response[0]["word"].nil?
+      if response.to_s.include? "No Definitions Found"
         redirect_to("/search/notFound")
       else
         @word = Word.new
@@ -25,7 +25,11 @@ class SearchController < ApplicationController
         @word.save
       end
     else
-      @word.count+=1
+      if @word.count.nil?
+        @word.count = 1
+      else
+        @word.count+=1
+      end
       @word.save
     end
 

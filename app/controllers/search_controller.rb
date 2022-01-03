@@ -10,7 +10,7 @@ class SearchController < ApplicationController
     puts params[:search_term]
     @word = Word.where(:word => params[:search_term]).first
     if @word.nil?
-      response = request_word_from_api(params[:search_term])
+      response = request_word_from_api(params[:search_term].delete(' '))
       if response.to_s.include? "No Definitions Found"
         redirect_to("/search/notFound")
       else

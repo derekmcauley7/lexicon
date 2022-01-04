@@ -17,9 +17,9 @@ jobs:
           ruby-version: 2.6.3
       - name: Install dependencies
         run: bundle install
-      - name: Run DB
+      - name: Run DB migration
         run : rake db:migrate RAILS_ENV=test
-      - name: Add Bootstrap
+      - name: Adding Bootstrap, jquery and popper.js
         run : yarn add bootstrap jquery popper.js
       - name: Run tests
         run: bundle exec rake

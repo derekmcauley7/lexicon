@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'users/login'
+  get 'users/create'
   root :to =>  'search#index'
 
   get 'search/found', :as => 'found_word'

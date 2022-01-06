@@ -14,8 +14,6 @@ class User < ApplicationRecord
             :uniqueness => true,
             :length => {:within => 2...25}
 
-  validate :check_valid_username
-
   validates :email, :presence => true,
             :length => {:maximum => 50},
             :uniqueness => true,

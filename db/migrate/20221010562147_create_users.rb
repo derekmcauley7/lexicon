@@ -7,8 +7,6 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string "password", :limit => 40
       t.string "password_digest", :string, :limit => 40
       t.timestamps
-      # t.datetime "created_at"
-      # t.datetime "updated_at"
     end
   end
 

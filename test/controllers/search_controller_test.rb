@@ -16,13 +16,11 @@ class SearchControllerTest < ActionDispatch::IntegrationTest
 
   test "should not find word and redirect to notFound" do
     get found_word_path(:search_term => "222lexicon111")
-    puts response.body.to_s
     assert response.body.to_s.include?('You are being <a href="http://www.example.com/search/notFound">redirected</a>')
   end
 
   test "should remove spaces from text" do
     get found_word_path(:search_term => "222 lexicon 111")
-    puts response.body.to_s
     assert response.body.to_s.include?('You are being <a href="http://www.example.com/search/notFound">redirected</a>')
 
     get found_word_path(:search_term => "le x i con ")

@@ -18,15 +18,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     user = User.new(:first_name => "Test")
     post '/users',
          params: { user: { :first_name => "Test" } }
-    puts response.body.to_s
     assert response.body.to_s.include?(
       '<li>Password can&#39;t be blank</li>
         <li>Last name can&#39;t be blank</li>
         <li>Username can&#39;t be blank</li>
-        <li>Username has already been taken</li>
         <li>Username is too short (minimum is 2 characters)</li>
         <li>Email can&#39;t be blank</li>
-        <li>Email has already been taken</li>
         <li>Email is invalid</li>')
   end
 

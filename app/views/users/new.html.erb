@@ -1,6 +1,5 @@
+<%= show_nav_bar %>
 <% @page_title = "New Admin User" %>
-
-<%= link_to("<< Back to Search", root_path, :class => 'back-link') %>
 
 <div class="admin-users new">
   <h2>Sign Up</h2>
@@ -9,7 +8,7 @@
 
     <%= render(:partial => 'form', :locals => {:f => f}) %>
 
-    <div class="form-buttons">
+    <div class="btn btn-primary">
       <%= f.submit("Create Account") %>
     </div>
 

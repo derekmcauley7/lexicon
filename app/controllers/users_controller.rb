@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :confirm_logged_in, :except => [:new]
+  before_action :confirm_logged_in, :except => [:new, :create, :index]
 
   def index
     @users = User.sorted
@@ -14,9 +14,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "admin user saved successfully."
-      redirect_to("in")
+      redirect_to(root_path)
     else
-      render(root_path)
+      render(new_user_path)
     end
 
   end

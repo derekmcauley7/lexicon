@@ -2,11 +2,6 @@ require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
 
-  test "should redirect when users is not logged in" do
-    get users_url
-    assert_redirected_to(root_path)
-  end
-
   test "should be able to sign up as a new user" do
     get new_user_path
     assert_response :success
@@ -17,6 +12,22 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     user.save
     get edit_user_path(user)
     assert_redirected_to(root_path)
+  end
+
+  test "Should return to edit with errors when user creation fails" do
+    user = User.new(:first_name => "Test")
+    post '/users',
+         params: { user: { :first_name => "Test" } }
+    puts response.body.to_s
+    assert response.body.to_s.include?(
+      '<li>Password can&#39;t be blank</li>
+        <li>Last name can&#39;t be blank</li>
+        <li>Username can&#39;t be blank</li>
+        <li>Username has already been taken</li>
+        <li>Username is too short (minimum is 2 characters)</li>
+        <li>Email can&#39;t be blank</li>
+        <li>Email has already been taken</li>
+        <li>Email is invalid</li>')
   end
 
 end

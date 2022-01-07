@@ -3,6 +3,10 @@ module ApplicationHelper
     render(:partial => 'application/error_messages', :locals => {:object => object})
   end
 
+  def show_nav_bar
+    render(:partial => 'application/nav_bar')
+  end
+
   def status_tag(boolean, options={})
     options[:true_text]  ||= ''
     options[:false_text] ||= ''

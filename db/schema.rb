@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 2022_10_11_562156) do
     t.string "first_name", limit: 25
     t.string "last_name", limit: 50
     t.string "email", default: "", null: false
-    t.string "password", limit: 40
-    t.string "password_digest", limit: 40
-    t.string "string", limit: 40
+    t.string "password", limit: 500
+    t.string "password_digest", limit: 500
+    t.string "string", limit: 500
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"

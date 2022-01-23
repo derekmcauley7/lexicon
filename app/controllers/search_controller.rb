@@ -7,7 +7,6 @@ class SearchController < ApplicationController
   end
 
   def found
-    puts params[:search_term]
     @word = Word.where(:word => params[:search_term]).first
     if @word.nil?
       response = request_word_from_api(params[:search_term].delete(' '))

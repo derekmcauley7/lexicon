@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_10_11_562156) do
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first_name", limit: 25
     t.string "last_name", limit: 50
     t.string "email", default: "", null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2022_10_11_562156) do
     t.string "username"
   end
 
-  create_table "words", force: :cascade do |t|
+  create_table "words", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "word"
     t.integer "count"
     t.datetime "created_at", precision: 6, null: false
